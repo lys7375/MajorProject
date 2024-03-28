@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 1891449437}
   - component: {fileID: 1891449436}
   - component: {fileID: 1891449440}
+  - component: {fileID: 1891449441}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -457,9 +458,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891449434}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e88ddca0c0ed487489e535eb21e25ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rawImage: {fileID: 314561442}
+--- !u!114 &1891449441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891449434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7bd1215ec9c1f34795bab44eafab614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  videoTargetIP: localhost
+  videoTargetPort: 8080
+  messageListenPort: 55555
+  delay: 0.05
   rawImage: {fileID: 314561442}
