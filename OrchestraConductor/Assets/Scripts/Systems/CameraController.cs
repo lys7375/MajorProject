@@ -21,6 +21,8 @@ public class CameraController : MonoBehaviour
             webCamTexture = new WebCamTexture(devices[0].name);
             // 将摄像头纹理分配给RawImage对象
             rawImage.texture = webCamTexture;
+            // 根据需要水平翻转图像
+            rawImage.rectTransform.localScale = new Vector3(-1, 1, 1);
             // 开始捕捉摄像头图像
             webCamTexture.Play();
         }
