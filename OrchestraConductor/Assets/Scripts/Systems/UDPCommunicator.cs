@@ -35,6 +35,7 @@ public class UDPCommunicator : MonoBehaviour
         // 初始化视频处理
         cam = new WebCamTexture();
         rawImage.texture = cam; // 二维材质
+        rawImage.rectTransform.localScale = new Vector3(-1, 1, 1);
         cam.Play();
         texture = new Texture2D(cam.width, cam.height, TextureFormat.RGB24, false);
 
@@ -70,9 +71,9 @@ public class UDPCommunicator : MonoBehaviour
         while (true)
         {
             byte[] data = udpListenClient.Receive(ref anyIP);
-            Debug.Log("Data received: " + data.Length + " bytes");
+            //Debug.Log("Data received: " + data.Length + " bytes");
             lastReceivedMessage = Encoding.ASCII.GetString(data); // 得到消息
-            Debug.Log("Data received: " + lastReceivedMessage);
+            //Debug.Log("Data received: " + lastReceivedMessage);
         }
     }
 
@@ -82,5 +83,10 @@ public class UDPCommunicator : MonoBehaviour
         texture.Apply();
         byte[] frameData = texture.EncodeToJPG();
         udpSendClient.Send(frameData, frameData.Length, videoTargetIP, videoTargetPort);
+    }
+
+    public string GetlastReceivedMessage()
+    {
+        return lastReceivedMessage;
     }
 }
