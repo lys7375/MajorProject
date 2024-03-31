@@ -21,7 +21,7 @@ class handDetector():
 
     '''
     在图像中检测手部，并绘制手部关键点和连线
-    
+
     参数:
         img: 传入的检测图像
         draw: 是否在图像上绘制手部关键点和连线
@@ -54,10 +54,11 @@ class handDetector():
 
     '''
     检测食指的四个基本方向（上、下、左、右）
-    
+
     return:
         directions: 所有检测到的手的食指朝向
     '''
+
     # def detectIndexFingerFourDirections(self, img):
     #     directions = []
     #     if self.results.multi_hand_landmarks:
