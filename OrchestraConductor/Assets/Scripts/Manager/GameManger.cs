@@ -8,8 +8,8 @@ public class GameManger : MonoBehaviour
 {
     public UDPCommunicator udpComm;
 
-    private string leftHandDirection = "";
-    private string rightHandDirection = "";
+    static public string leftHandDirection = "";
+    static public string rightHandDirection = "";
     private int position = 0;
 
     // Start is called before the first frame update
@@ -37,8 +37,8 @@ public class GameManger : MonoBehaviour
 
                 if(position != -1)
                 {
-                    leftHandDirection = receivedMessage.Substring(0, position);
-                    rightHandDirection = receivedMessage.Substring(position + 1);
+                    leftHandDirection = "L" + receivedMessage.Substring(0, position);
+                    rightHandDirection = "R" + receivedMessage.Substring(position + 1);
                 }
             }
             else
@@ -47,7 +47,8 @@ public class GameManger : MonoBehaviour
                 rightHandDirection = "";
             }
 
-            Debug.Log("udpComm.GetlastReceivedMessage(): " + receivedMessage + "left: " + leftHandDirection + " |  right: " + rightHandDirection);
+            Debug.Log("Receive left: " + leftHandDirection + " |  right: " + rightHandDirection);
+            //Debug.Log("udpComm.GetlastReceivedMessage(): " + receivedMessage + "left: " + leftHandDirection + " |  right: " + rightHandDirection);
         }
     }
 }

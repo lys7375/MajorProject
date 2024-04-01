@@ -1849,7 +1849,6 @@ MonoBehaviour:
   downArrowNote: {fileID: 2392049125693910966, guid: 2fed2290aef1c9641a5c6f2c3f4644fb, type: 3}
   crescendoNote: {fileID: 290570124941902689, guid: 2248b060cb6c9384895072cfa21e7490, type: 3}
   decrescendoNote: {fileID: 6454870830502590027, guid: b229183aeef8fd54fbbac5aeae983137, type: 3}
-  targetPosition: {x: -5.23, y: -3.5, z: 0}
   fallSpeed: 5
   fallTime: 0
   eventID: ConstantModeratoTrack

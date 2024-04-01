@@ -9,10 +9,10 @@ public class NoteController : MonoBehaviour
     public Vector3 targetPosition = new Vector3(0, 0, 0); // 目标位置
 
     // 限制方块的下落速度为 5f
-    public float fallSpeed = 5f; // 下落速度（单位距离/单位时间）
+    public float fallSpeed = 0f; // 下落速度（单位距离/单位时间）
 
-    // 指定方块的下落时间为 11.025 秒
-    public float fallTime = 11.025f;
+    // 指定方块的下落时间
+    public float fallTime = 0;
 
     private bool flag = true;
 
@@ -26,16 +26,39 @@ public class NoteController : MonoBehaviour
 
     private bool fadeOutFlag = false;
 
+    public float finalHeight = 0;
+
+    // Note种类字典
+    private Dictionary<string, string> noteType = new Dictionary<string, string>();
+
     // Start is called before the first frame update
     void Start()
     {
         // 计算Note的最终高度
-        float finalHeight = fallSpeed * fallTime;
+        //finalHeight = fallSpeed * fallTime;
 
         // 设置Note的初始位置
         transform.position = new Vector3(transform.position.x, finalHeight, transform.position.y);
 
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+
+        //Debug.Log("GameObject: " + this.transform.name + " fallTime: " + fallTime + " finalHeight: " + finalHeight);
+
+        noteType["Note_a"] = "Lleft";
+        noteType["Note_s"] = "Ldown";
+        noteType["Note_w"] = "Lup";
+        noteType["Note_d"] = "Lright";
+
+        noteType["Note_q"] = "LleftCrescendo";
+        noteType["Note_e"] = "LleftDecrescendo";
+
+        noteType["Note_j"] = "Rleft";
+        noteType["Note_k"] = "Rdown";
+        noteType["Note_i"] = "Rup";
+        noteType["Note_l"] = "Rright";
+
+        noteType["Note_u"] = "RrightCrescendo";
+        noteType["Note_o"] = "RrightDecrescendo";
     }
 
     // Update is called once per frame
@@ -74,15 +97,23 @@ public class NoteController : MonoBehaviour
     // 当音符位于检测区间时对玩家手势进行检测
     private void DetectGestureMatch()
     {
-        if(gestureCheckFlag == true)
+        // 位于检测区间
+        if (transform.position.y < -2.5f && transform.position.y > -4.5f)
         {
-            // 位于检测区间
-            if (transform.position.y < -2.5f && transform.position.y > -4.5f)
-            {
-                Debug.Log("位于检测区间: " + transform.name);
+            //Debug.Log("位于检测区间: " + transform.name);
+            if (noteType[this.transform.name] == UDPCommunicator.leftHandDirection || noteType[this.transform.name] == UDPCommunicator.rightHandDirection)
                 fadeOutFlag = true;
-            }
         }
+
+        //if(gestureCheckFlag == true)
+        //{
+        //    // 位于检测区间
+        //    if (transform.position.y < -2.5f && transform.position.y > -4.5f)
+        //    {
+        //        //Debug.Log("位于检测区间: " + transform.name);
+        //        fadeOutFlag = true;
+        //    }
+        //}
     }
 
     // Note变淡消失
@@ -102,6 +133,9 @@ public class NoteController : MonoBehaviour
         }
         else
         {
+            GameController.noteMaxNumber--;
+            GameController.num++;
+            Debug.Log("num: " + GameController.num);
             Destroy(gameObject);
         }
     }

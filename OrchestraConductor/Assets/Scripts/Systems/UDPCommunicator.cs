@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class UDPCommunicator : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class UDPCommunicator : MonoBehaviour
     IPEndPoint remoteEndPoint;
     bool isTrue = true;
     private string receivedText = "";
+
+    static public string leftHandDirection = "";
+    static public string rightHandDirection = "";
+    private int position = 0;
+
 
     void Start()
     {
@@ -45,7 +51,25 @@ public class UDPCommunicator : MonoBehaviour
             {
                 byte[] receivedData = client.Receive(ref remoteEndPoint);
                 string receivedText = Encoding.UTF8.GetString(receivedData);
-                Debug.Log("Received: " + receivedText);
+                //Debug.Log("Received: " + receivedText);
+
+                if(!string.IsNullOrEmpty(receivedText))
+                {
+                    position = receivedText.IndexOf('|');
+
+                    if (position != -1)
+                    {
+                        leftHandDirection = receivedText.Substring(0, position);
+                        rightHandDirection = receivedText.Substring(position + 1);
+                    }
+                    else
+                    {
+                        leftHandDirection = "Null";
+                        rightHandDirection = "Null";
+                    }
+
+                    Debug.Log("Receive left: " + leftHandDirection + " |  right: " + rightHandDirection);
+                }
             }
             yield return null;
         }

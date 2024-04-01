@@ -6,6 +6,9 @@ using static TreeEditor.TreeEditorHelper;
 
 public class GameController : MonoBehaviour
 {
+    public static int noteMaxNumber = 0;
+    public static int num = 0;
+
     // 定义 Note 的预制体
     public GameObject notePrefab;
     public GameObject leftArrowNote;
@@ -15,9 +18,6 @@ public class GameController : MonoBehaviour
     public GameObject crescendoNote;
     public GameObject decrescendoNote;
 
-
-    // 定义方块的目标位置
-    public Vector3 targetPosition = new Vector3(0, 0, 0); // 目标位置
     // 限制方块的下落速度为 5f
     public float fallSpeed = 5f; // 下落速度（单位距离/单位时间）
     // 指定方块的下落时间为 11.025 秒
@@ -34,6 +34,9 @@ public class GameController : MonoBehaviour
     // Note种类字典
     private Dictionary<string, GameObject> noteType = new Dictionary<string, GameObject>();
 
+    private List<string> noteNameList = new List<string>();
+    //private List<float> noteFallTimeList = new List<float>();
+    private List<float> noteHeightList = new List<float>();
 
     // Start is called before the first frame update
     void Start()
@@ -88,17 +91,39 @@ public class GameController : MonoBehaviour
             float sampleRate = (float)evt.StartSample / (float)playingKoreo.SampleRate;
 
             fallTime = sampleRate;
-            GenerateNote(payload, targetPosition, fallSpeed, fallTime);
-            //Debug.Log(payload + " | " + sampleRate);
-            //Debug.Log("mesure: " + koreography.GetSampleTimeFromMeasureTime(fallTime));
+
+            //fallSpeed * fallTime;
+
+            noteNameList.Add(payload);
+            noteHeightList.Add(fallSpeed * sampleRate);
+            GenerateNote(payload, fallSpeed * sampleRate);
         }
+
+        //if (noteMaxNumber < 11)
+        //{
+        //    GenerateNote(noteNameList[0], noteHeightList[0]);
+        //    //Debug.Log(noteNameList[0] + " fallTime: " + noteFallTimeList[0]);
+        //    noteNameList.RemoveAt(0);
+        //    noteHeightList.RemoveAt(0);
+        //    // 更新最大Note值
+        //    noteMaxNumber++;
+        //}
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 获得当前Sample Time
-        //Debug.Log("koreography.GetLatestSampleTime(): " + koreography.GetLatestSampleTime());
+        //if (noteMaxNumber < 10 && noteNameList.Count != 0)
+        //{
+
+        //    GenerateNote(noteNameList[0], noteHeightList[0]);
+
+        //    //Debug.Log(noteNameList[0] + " fallTime: " + noteFallTimeList[0]);
+
+        //    noteNameList.RemoveAt(0);
+        //    noteHeightList.RemoveAt(0);
+        //    noteMaxNumber++;
+        //}
     }
 
     private void OnDestroy()
@@ -118,19 +143,17 @@ public class GameController : MonoBehaviour
     }
 
     // 生成音符
-    void GenerateNote(string name, Vector3 targetPos, float fallSpeed, float fallTime)
+    void GenerateNote(string name, float height)
     {
-        // 实例化 Note 预制体
+        // 实例化Note预制体
         GameObject note = Instantiate(noteType[name], notePosition[name], Quaternion.identity);
         //GameObject note = Instantiate(notePrefab, new Vector3(-6.5f, -3.5f, 0), Quaternion.identity);
         note.name = "Note_" + name;
 
-        // 获取 Cube 的 CubeController 组件
+        // 获取Note的Controller 组件
         NoteController noteController = note.GetComponent<NoteController>();
-
-        // 设置 CubeController 的参数
-        noteController.targetPosition = targetPos;
+        // 设置NotePrefeb的参数
+        noteController.finalHeight = height;
         noteController.fallSpeed = fallSpeed;
-        noteController.fallTime = fallTime;
     }
 }
