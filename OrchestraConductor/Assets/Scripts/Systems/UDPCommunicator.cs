@@ -1,92 +1,64 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UDPCommunicator : MonoBehaviour
 {
-    public string videoTargetIP = "localhost";
-    public int videoTargetPort = 8080;
-    public int messageListenPort = 55555;
+    UdpClient client;
+    IPEndPoint remoteEndPoint;
+    bool isTrue = true;
+    private string receivedText = "";
 
-    [Space]
-    public float delay = 0.5f; // 设定发送数据的频率，例如每0.1s发送一次    
-
-    [Space]
-    public RawImage rawImage;
-
-    private UdpClient udpSendClient; // 用于发送数据的UDP客户端
-    private UdpClient udpListenClient; // 用于接收数据的UDP客户端
-    private Thread listenThread; // 用于监听的线程
-
-    private float elapsedTime = 0.0f; // 用于计时    
-    private string lastReceivedMessage = string.Empty;
-
-    private WebCamTexture cam; // Web摄像头
-    private Texture2D texture; // 视频帧
-
-    private void Start()
+    void Start()
     {
-        udpSendClient = new UdpClient();
+        client = new UdpClient(54321); // 监听的端口
+        remoteEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8080); // Python监听的端口和地址
 
-        // 初始化视频处理
-        cam = new WebCamTexture();
-        rawImage.texture = cam; // 二维材质
-        rawImage.rectTransform.localScale = new Vector3(-1, 1, 1);
-        cam.Play();
-        texture = new Texture2D(cam.width, cam.height, TextureFormat.RGB24, false);
-
-        // 初始化信息处理
-        udpListenClient = new UdpClient(messageListenPort);
-        listenThread = new Thread(ListenThreadMethod);
-        listenThread.Start();
+        // 启动一个协程来接收数据
+        StartCoroutine(ReceiveData());
     }
 
-    /// <summary>
-    ///经过一段间隔通过UDP发送图像信息
-    /// </summary>
-    private void Update()
+    void Update()
     {
-        elapsedTime += Time.deltaTime;
-        if (elapsedTime > delay)
+        // 按需发送数据
+        if (Input.GetKeyDown(KeyCode.Space)) // 示例：按空格键发送数据
         {
-            SendFrame(cam);
-            elapsedTime = 0.0f;
+            string message = isTrue ? "Stop" : "Run";
+            byte[] data = Encoding.UTF8.GetBytes(message);
+            client.Send(data, data.Length, remoteEndPoint);
+
+            Debug.Log("Python: " + message);
+            // 切换布尔变量的值
+            isTrue = !isTrue;
         }
     }
 
-    private void OnDestroy()
+    // 获取Python手势识别结果
+    private IEnumerator ReceiveData()
     {
-        listenThread.Abort();
-        udpListenClient.Close();
-    }
-
-    private void ListenThreadMethod()
-    {
-        IPEndPoint anyIP = new IPEndPoint(IPAddress.Parse("0.0.0.0"), messageListenPort);
-
         while (true)
         {
-            byte[] data = udpListenClient.Receive(ref anyIP);
-            //Debug.Log("Data received: " + data.Length + " bytes");
-            lastReceivedMessage = Encoding.ASCII.GetString(data); // 得到消息
-            //Debug.Log("Data received: " + lastReceivedMessage);
+            if (client.Available > 0)
+            {
+                byte[] receivedData = client.Receive(ref remoteEndPoint);
+                string receivedText = Encoding.UTF8.GetString(receivedData);
+                Debug.Log("Received: " + receivedText);
+            }
+            yield return null;
         }
     }
 
-    private void SendFrame(WebCamTexture cam)
+    private void OnApplicationQuit()
     {
-        texture.SetPixels(cam.GetPixels());
-        texture.Apply();
-        byte[] frameData = texture.EncodeToJPG();
-        udpSendClient.Send(frameData, frameData.Length, videoTargetIP, videoTargetPort);
+        client.Close();
     }
 
-    public string GetlastReceivedMessage()
+    // 返还Python手势识别数据
+    public string GetLastReceivedMessage()
     {
-        return lastReceivedMessage;
+        return receivedText;
     }
 }

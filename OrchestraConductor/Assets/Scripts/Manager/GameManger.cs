@@ -29,7 +29,7 @@ public class GameManger : MonoBehaviour
     {
         if(udpComm != null)
         {
-            string receivedMessage = udpComm.GetlastReceivedMessage();
+            string receivedMessage = udpComm.GetLastReceivedMessage();
 
             if(!string.IsNullOrEmpty(receivedMessage))
             {

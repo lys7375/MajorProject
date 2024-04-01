@@ -1845,14 +1845,14 @@ GameObject:
   - component: {fileID: 1891449438}
   - component: {fileID: 1891449437}
   - component: {fileID: 1891449436}
-  - component: {fileID: 1891449441}
+  - component: {fileID: 1891449440}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1891449436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1935,7 +1935,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1891449441
+--- !u!114 &1891449440
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1944,14 +1944,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1891449434}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7bd1215ec9c1f34795bab44eafab614, type: 3}
+  m_Script: {fileID: 11500000, guid: 74409a9bc329eea408b752663ba6b5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoTargetIP: localhost
-  videoTargetPort: 8080
-  messageListenPort: 55555
-  delay: 0.05
-  rawImage: {fileID: 314561442}
 --- !u!1 &1899710750
 GameObject:
   m_ObjectHideFlags: 0

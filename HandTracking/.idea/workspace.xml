@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00209e34-057e-41f8-9622-f8e287ceeee3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Prefab/NotePrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Prefab/NotePrefab.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Controller/GameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Controller/GameController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Controller/NoteController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Controller/NoteController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Manager/GameManger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Manager/GameManger.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +30,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "python-unity-communication",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -80,6 +79,6 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/HandTracking$main.coverage" NAME="main Coverage Results" MODIFIED="1711932508247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HandTracking$main.coverage" NAME="main Coverage Results" MODIFIED="1711959957622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
