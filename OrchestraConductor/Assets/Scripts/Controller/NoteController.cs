@@ -5,28 +5,23 @@ using UnityEngine;
 
 public class NoteController : MonoBehaviour
 {
-    // 定义方块的目标位置
-    public Vector3 targetPosition = new Vector3(0, 0, 0); // 目标位置
+    // 限制音符的下落速度
+    public float fallSpeed = 0f;
 
-    // 限制方块的下落速度为 5f
-    public float fallSpeed = 0f; // 下落速度（单位距离/单位时间）
-
-    // 指定方块的下落时间
+    // 指定音符的下落时间
     public float fallTime = 0;
 
-    private bool flag = true;
-
-    private bool gestureCheckFlag = true;
+    // 音符生成高度
+    public float finalHeight = 0;
 
     // 淡出持续时间
     private float fadeDuration = 0.2f;
     // 淡出计时器
     private float fadeTimer = 0f;
+
     private SpriteRenderer spriteRenderer;
 
     private bool fadeOutFlag = false;
-
-    public float finalHeight = 0;
 
     // Note种类字典
     private Dictionary<string, string> noteType = new Dictionary<string, string>();
@@ -42,8 +37,7 @@ public class NoteController : MonoBehaviour
 
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
 
-        //Debug.Log("GameObject: " + this.transform.name + " fallTime: " + fallTime + " finalHeight: " + finalHeight);
-
+        // 手势检测字典
         noteType["Note_a"] = "Lleft";
         noteType["Note_s"] = "Ldown";
         noteType["Note_w"] = "Lup";
@@ -70,25 +64,25 @@ public class NoteController : MonoBehaviour
         // 更新Note的位置
         transform.position = nextPosition;
 
-        if (flag == true && transform.position.y <= targetPosition.y)
-        {
-            //Debug.Log(gameObject.name + " arraves 0,0,0");
-            flag = false;
-            //Debug.Log("Sample time!!!!" + Koreographer.GetSampleTime());
-        }
-
-        // 如果Note到达了销毁位置
+        // 穿过检测区且没有被正确识别
         if (transform.position.y <= -4.51f)
         {
             //Debug.Log(gameObject.name + " has destroy");
             GameManger.maxHitChain = 0;
             GameManger.miss++;
             Debug.Log("Unhit!!!");
+        }
+
+        // Note到达销毁位置
+        if (transform.position.y <= -6f)
+        {
             Destroy(gameObject);
         }
 
+        // 手势检测
         DetectGestureMatch();
 
+        // 淡出
         if(fadeOutFlag != false)
         {
             FadeOut();

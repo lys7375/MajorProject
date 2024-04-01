@@ -15,6 +15,7 @@ public class UDPCommunicator : MonoBehaviour
 
     static public string leftHandDirection = "";
     static public string rightHandDirection = "";
+    static public bool gestureStopSignal = false;
     private int position = 0;
 
 
@@ -29,8 +30,9 @@ public class UDPCommunicator : MonoBehaviour
 
     void Update()
     {
-        // 按需发送数据
-        if (Input.GetKeyDown(KeyCode.Space)) // 示例：按空格键发送数据
+        //发送数据
+        // 按空格停止python进行手势识别
+        if (Input.GetKeyDown(KeyCode.Space) || gestureStopSignal == true)
         {
             string message = isTrue ? "Stop" : "Run";
             byte[] data = Encoding.UTF8.GetBytes(message);

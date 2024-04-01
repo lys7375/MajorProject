@@ -92,38 +92,16 @@ public class GameController : MonoBehaviour
 
             fallTime = sampleRate;
 
-            //fallSpeed * fallTime;
-
             noteNameList.Add(payload);
             noteHeightList.Add(fallSpeed * sampleRate);
             GenerateNote(payload, fallSpeed * sampleRate);
         }
-
-        //if (noteMaxNumber < 11)
-        //{
-        //    GenerateNote(noteNameList[0], noteHeightList[0]);
-        //    //Debug.Log(noteNameList[0] + " fallTime: " + noteFallTimeList[0]);
-        //    noteNameList.RemoveAt(0);
-        //    noteHeightList.RemoveAt(0);
-        //    // 更新最大Note值
-        //    noteMaxNumber++;
-        //}
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (noteMaxNumber < 10 && noteNameList.Count != 0)
-        //{
 
-        //    GenerateNote(noteNameList[0], noteHeightList[0]);
-
-        //    //Debug.Log(noteNameList[0] + " fallTime: " + noteFallTimeList[0]);
-
-        //    noteNameList.RemoveAt(0);
-        //    noteHeightList.RemoveAt(0);
-        //    noteMaxNumber++;
-        //}
     }
 
     private void OnDestroy()
@@ -147,7 +125,6 @@ public class GameController : MonoBehaviour
     {
         // 实例化Note预制体
         GameObject note = Instantiate(noteType[name], notePosition[name], Quaternion.identity);
-        //GameObject note = Instantiate(notePrefab, new Vector3(-6.5f, -3.5f, 0), Quaternion.identity);
         note.name = "Note_" + name;
 
         // 获取Note的Controller 组件
