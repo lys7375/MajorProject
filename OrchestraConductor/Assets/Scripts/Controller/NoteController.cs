@@ -16,6 +16,8 @@ public class NoteController : MonoBehaviour
 
     private bool flag = true;
 
+    private bool gestureCheckFlag = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,18 +39,33 @@ public class NoteController : MonoBehaviour
 
         if (flag == true && transform.position.y <= targetPosition.y)
         {
-            Debug.Log(gameObject.name + " arraves 0,0,0");
+            //Debug.Log(gameObject.name + " arraves 0,0,0");
             flag = false;
-            Debug.Log("Sample time!!!!" + Koreographer.GetSampleTime());
+            //Debug.Log("Sample time!!!!" + Koreographer.GetSampleTime());
         }
 
         // 如果Note到达了销毁位置
         if (transform.position.y <= -10)
         {
-            Debug.Log(gameObject.name + " has destroy");
+            //Debug.Log(gameObject.name + " has destroy");
 
             // 销毁Note
             Destroy(gameObject);
+        }
+
+        DetectGestureMatch();
+    }
+
+    // 当音符位于检测区间时对玩家手势进行检测
+    private void DetectGestureMatch()
+    {
+        if(gestureCheckFlag == true)
+        {
+            // 位于检测区间
+            if (transform.position.y < -2.5f && transform.position.y > -4.5f)
+            {
+                Debug.Log("位于检测区间: " + transform.name);
+            }
         }
     }
 }
