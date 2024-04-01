@@ -92,7 +92,6 @@ import socket
 import time
 from threading import Thread
 import cv2
-import time
 import HandTrackingModule as htm
 
 
