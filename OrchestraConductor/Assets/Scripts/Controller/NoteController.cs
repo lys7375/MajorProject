@@ -18,6 +18,14 @@ public class NoteController : MonoBehaviour
 
     private bool gestureCheckFlag = true;
 
+    // 淡出持续时间
+    private float fadeDuration = 0.2f;
+    // 淡出计时器
+    private float fadeTimer = 0f;
+    private SpriteRenderer spriteRenderer;
+
+    private bool fadeOutFlag = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +34,8 @@ public class NoteController : MonoBehaviour
 
         // 设置Note的初始位置
         transform.position = new Vector3(transform.position.x, finalHeight, transform.position.y);
+
+        spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -54,6 +64,11 @@ public class NoteController : MonoBehaviour
         }
 
         DetectGestureMatch();
+
+        if(fadeOutFlag != false)
+        {
+            FadeOut();
+        }
     }
 
     // 当音符位于检测区间时对玩家手势进行检测
@@ -65,7 +80,29 @@ public class NoteController : MonoBehaviour
             if (transform.position.y < -2.5f && transform.position.y > -4.5f)
             {
                 Debug.Log("位于检测区间: " + transform.name);
+                fadeOutFlag = true;
             }
+        }
+    }
+
+    // Note变淡消失
+    private void FadeOut()
+    {
+        fadeTimer += Time.deltaTime;
+
+        //Debug.Log("fadeTimer: " + fadeTimer + " | fadeDuration: " + fadeDuration);
+
+        if (fadeTimer < fadeDuration)
+        {
+            float fadeAmount = Mathf.Lerp(1f, 0f, fadeTimer / fadeDuration);
+
+            Color newColor = spriteRenderer.color;
+            newColor.a = fadeAmount;
+            spriteRenderer.color = newColor;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 }
