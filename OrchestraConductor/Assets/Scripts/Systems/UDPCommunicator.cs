@@ -37,7 +37,7 @@ public class UDPCommunicator : MonoBehaviour
             client.Send(data, data.Length, remoteEndPoint);
 
             Debug.Log("Python: " + message);
-            // 切换布尔变量的值
+            
             isTrue = !isTrue;
         }
     }
@@ -68,7 +68,7 @@ public class UDPCommunicator : MonoBehaviour
                         rightHandDirection = "Null";
                     }
 
-                    Debug.Log("Receive left: " + leftHandDirection + " |  right: " + rightHandDirection);
+                    //Debug.Log("Receive left: " + leftHandDirection + " |  right: " + rightHandDirection);
                 }
             }
             yield return null;

@@ -78,11 +78,12 @@ public class NoteController : MonoBehaviour
         }
 
         // 如果Note到达了销毁位置
-        if (transform.position.y <= -10)
+        if (transform.position.y <= -4.51f)
         {
             //Debug.Log(gameObject.name + " has destroy");
-
-            // 销毁Note
+            GameManger.maxHitChain = 0;
+            GameManger.miss++;
+            Debug.Log("Unhit!!!");
             Destroy(gameObject);
         }
 
@@ -135,7 +136,12 @@ public class NoteController : MonoBehaviour
         {
             GameController.noteMaxNumber--;
             GameController.num++;
-            Debug.Log("num: " + GameController.num);
+            Debug.Log("hit num: " + GameController.num);
+
+            GameManger.finalScore++;
+            GameManger.maxHitChain++;
+
+            Debug.Log("GameManger.finalScore: " + GameManger.finalScore);
             Destroy(gameObject);
         }
     }
