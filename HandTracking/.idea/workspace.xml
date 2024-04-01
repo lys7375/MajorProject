@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00209e34-057e-41f8-9622-f8e287ceeee3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Manager/GameManger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Manager/GameManger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Systems/GameManger.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Systems/GameManger.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +71,7 @@
       <option name="presentableId" value="Default" />
       <updated>1711850616693</updated>
       <workItem from="1711850619470" duration="291000" />
-      <workItem from="1711931700107" duration="857000" />
+      <workItem from="1711931700107" duration="1215000" />
     </task>
     <servers />
   </component>

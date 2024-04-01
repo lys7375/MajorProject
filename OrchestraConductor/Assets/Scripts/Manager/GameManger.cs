@@ -24,6 +24,7 @@ public class GameManger : MonoBehaviour
         ExtractData();
     }
 
+    // 获取UDPCommunicator发送的后端数据后进行拆分
     private void ExtractData()
     {
         if(udpComm != null)
