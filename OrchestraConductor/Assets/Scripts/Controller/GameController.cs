@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
     // 限制方块的下落速度为 5f
     public float fallSpeed = 5f; // 下落速度（单位距离/单位时间）
     // 指定方块的下落时间为 11.025 秒
-    public float fallTime = 0;
+    //private float fallTime = 0;
 
     // 用于监听的事件ID，确保这与你在Koreographer中设置的事件ID匹配
     public string eventID;
@@ -87,14 +87,14 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < rawEvents.Count; ++i)
         {
             KoreographyEvent evt = rawEvents[i];
-            string payload = evt.GetTextValue();
-            float sampleRate = (float)evt.StartSample / (float)playingKoreo.SampleRate;
+            string eventName = evt.GetTextValue();
+            float fallTime = (float)evt.StartSample / (float)playingKoreo.SampleRate;
 
-            fallTime = sampleRate;
+            //fallTime = sampleRate;
 
-            noteNameList.Add(payload);
-            noteHeightList.Add(fallSpeed * sampleRate);
-            GenerateNote(payload, fallSpeed * sampleRate);
+            noteNameList.Add(eventName);
+            noteHeightList.Add(fallSpeed * fallTime);
+            GenerateNote(eventName, fallSpeed * fallTime);
         }
     }
 
