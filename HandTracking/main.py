@@ -126,7 +126,7 @@ while True:
         success, img = cap.read()
         img = detector.findHands(img)
         lmList = detector.findPosition(img)
-        # print(detector.detectIndexFingerFourDirections(lmList))
+        print(detector.detectIndexFingerFourDirections(lmList))
 
         message = detector.detectIndexFingerFourDirections(lmList)
 

@@ -58,34 +58,6 @@ class handDetector():
     return:
         directions: 所有检测到的手的食指朝向
     '''
-
-    # def detectIndexFingerFourDirections(self, img):
-    #     directions = []
-    #     if self.results.multi_hand_landmarks:
-    #         for hand_landmarks in self.results.multi_hand_landmarks:
-    #             # 获取食指第二个关节（index_finger_mcp）和第三个关节（index_finger_pip）的坐标
-    #             x1 = hand_landmarks.landmark[self.mpHands.HandLandmark.INDEX_FINGER_MCP].x
-    #             y1 = hand_landmarks.landmark[self.mpHands.HandLandmark.INDEX_FINGER_MCP].y
-    #             x2 = hand_landmarks.landmark[self.mpHands.HandLandmark.INDEX_FINGER_PIP].x
-    #             y2 = hand_landmarks.landmark[self.mpHands.HandLandmark.INDEX_FINGER_PIP].y
-    #
-    #             # 计算食指的斜率和角度（以度为单位）
-    #             slope = (y2 - y1) / (x2 - x1)
-    #             angle = math.atan(slope) * 180 / math.pi
-    #
-    #             # 根据角度判断食指的方向，并获取对应的反馈信息
-    #             if (angle > 45 or angle < -45) and y1 > y2:
-    #                 direction = "up"
-    #             elif (angle > 45 or angle < -45) and y1 < y2:
-    #                 direction = "down"
-    #             elif (-45 < angle < 45) and x1 < x2:
-    #                 direction = "left"
-    #             else:
-    #                 direction = "right"
-    #
-    #             directions.append(direction)
-    #     return directions
-
     def detectIndexFingerFourDirections(self, img):
         left_direction = "NULL"
         right_direction = "NULL"

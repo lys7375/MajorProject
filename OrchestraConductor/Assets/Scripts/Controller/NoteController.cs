@@ -76,6 +76,7 @@ public class NoteController : MonoBehaviour
         if (transform.position.y <= -6f)
         {
             GameManger.miss++;
+            GameController.noteMaxNumber--;
             Destroy(gameObject);
         }
 
@@ -129,7 +130,6 @@ public class NoteController : MonoBehaviour
         else
         {
             GameController.noteMaxNumber--;
-            GameController.num++;
             //Debug.Log("hit num: " + GameController.num);
 
             GameManger.finalScore++;

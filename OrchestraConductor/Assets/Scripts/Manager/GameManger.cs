@@ -23,6 +23,22 @@ public class GameManger : MonoBehaviour
         //ExtractData();
     }
 
+    // 数据本地存入
+    public void SaveData(string levelName, int score, int hitChain, int missHit)
+    {
+        DataStorage data = new DataStorage(levelName, score, hitChain, missHit);
+
+        data.SaveDataToPlayerPrefs(levelName);
+    }
+
+    // 本地数据读取
+    public DataStorage LoadData(string levelName)
+    {
+        DataStorage data = DataStorage.LoadDataFromPlayerPrefs(levelName);
+
+        return data;
+    }
+
     //// 获取UDPCommunicator发送的后端数据后进行拆分
     //private void ExtractData()
     //{

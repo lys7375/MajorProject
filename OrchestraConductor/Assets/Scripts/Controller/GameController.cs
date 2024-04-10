@@ -1,13 +1,25 @@
 ﻿using SonicBloom.Koreo;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using static TreeEditor.TreeEditorHelper;
 
 public class GameController : MonoBehaviour
 {
     public static int noteMaxNumber = 0;
-    public static int num = 0;
+    public float delay = 5f;
+
+    public GameObject curtain;
+    // 渐变速度
+    public float fadeSpeed = 0.5f;
+    // 当前 alpha 值
+    private float currentAlpha = 0f;
+
+    public GameManger gameManager;
 
     // 定义 Note 的预制体
     public GameObject notePrefab;
@@ -38,9 +50,18 @@ public class GameController : MonoBehaviour
     //private List<float> noteFallTimeList = new List<float>();
     private List<float> noteHeightList = new List<float>();
 
+    private SpriteRenderer spriteRenderer;
+
+    private string sceneName;
+
+    private bool dataSaveFlag = true;
+
     // Start is called before the first frame update
     void Start()
     {
+        spriteRenderer = curtain.GetComponent<SpriteRenderer>();
+        //spriteRenderer.enabled = false;
+
         // 定义Note初始生成X,z坐标
         // 左手检测区
         notePosition["a"] = new Vector3 (-7f, -3.5f, 0); // left direction
@@ -74,7 +95,10 @@ public class GameController : MonoBehaviour
         noteType["u"] = crescendoNote;
         noteType["o"] = decrescendoNote;
 
-
+        // 获取当前活动的场景
+        Scene currentScene = SceneManager.GetActiveScene();
+        // 获取当前场景的名称
+        sceneName = currentScene.name;
 
         // 注册事件监听器
         Koreographer.Instance.RegisterForEvents(eventID, OnMusicEvent);
@@ -83,6 +107,8 @@ public class GameController : MonoBehaviour
 
         KoreographyTrackBase rhythmTrack = playingKoreo.GetTrackByID(eventID);
         List<KoreographyEvent> rawEvents = rhythmTrack.GetAllEvents();
+
+        noteMaxNumber = rawEvents.Count;
 
         for (int i = 0; i < rawEvents.Count; ++i)
         {
@@ -101,7 +127,27 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("noteMaxNumber: " + noteMaxNumber);
+        if (noteMaxNumber == 0)
+        {
+            DelayedExecution(delay);
+            FadeIn();
+            //Debug.Log("FadeIn");
 
+            dataSaveFlag = true;
+        }
+
+        if(noteMaxNumber == 290 && dataSaveFlag == true)
+        {
+            SaveData();
+            dataSaveFlag= false;
+        }
+
+        if(noteMaxNumber == 290)
+        {
+            SaveData();
+            loadScene();
+        }
     }
 
     private void OnDestroy()
@@ -132,5 +178,52 @@ public class GameController : MonoBehaviour
         // 设置NotePrefeb的参数
         noteController.finalHeight = height;
         noteController.fallSpeed = fallSpeed;
+    }
+
+    IEnumerator DelayedExecution(float delay)
+    {
+        // 等待指定的延迟时间
+        yield return new WaitForSeconds(delay);
+    }
+
+    void FadeIn()
+    {
+        currentAlpha += fadeSpeed * Time.deltaTime;
+        currentAlpha = Mathf.Clamp01(currentAlpha);
+
+        // 计算从透明到白色的颜色渐变
+        Color targetColor = Color.white;
+        Color newColor = Color.Lerp(new Color(1, 1, 1, 0), targetColor, currentAlpha);
+
+        // 更新精灵图的颜色
+        spriteRenderer.color = newColor;
+
+        if (currentAlpha >= 1f)
+        {
+            enabled = false;
+        }
+    }
+
+    void SaveData()
+    {
+        //gameManager.SaveData(sceneName, GameManger.finalScore, GameManger.maxHitChain, GameManger.miss);
+
+        //DataStorage data = new DataStorage(sceneName, GameManger.finalScore, GameManger.maxHitChain, GameManger.miss);
+
+        string dataString = $"{sceneName}|{GameManger.finalScore}|{GameManger.maxHitChain}|{GameManger.miss}";
+
+
+        Debug.Log(dataString);
+
+        PlayerPrefs.SetString(sceneName, dataString);
+        PlayerPrefs.Save();
+
+        //PlayerPrefs.SetString("levelName", sceneName);
+        //PlayerPrefs.Save();
+    }
+
+    void loadScene()
+    {
+        SceneManager.LoadScene("ResultScene");
     }
 }
