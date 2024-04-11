@@ -11,7 +11,7 @@ using static TreeEditor.TreeEditorHelper;
 public class GameController : MonoBehaviour
 {
     public static int noteMaxNumber = 0;
-    public float delay = 5f;
+    public float delay = 3f;
 
     public GameObject curtain;
     // 渐变速度
@@ -37,8 +37,15 @@ public class GameController : MonoBehaviour
 
     // 用于监听的事件ID，确保这与你在Koreographer中设置的事件ID匹配
     public string eventID;
-    public Koreography koreography;
+    //public Koreography koreography;
+    private Koreography koreography;
     Koreography playingKoreo;
+
+    public Koreography koreography1;
+    public Koreography koreography2;
+    public Koreography koreography3;
+
+
 
     // Note生成坐标字典
     private Dictionary<string, Vector3> notePosition = new Dictionary<string, Vector3>();
@@ -55,6 +62,11 @@ public class GameController : MonoBehaviour
     private string sceneName;
 
     private bool dataSaveFlag = true;
+
+    public GameObject Constant_Moderato_Audio;
+    public GameObject Three_Tone_Composition_Audio;
+    public GameObject A_Familiar_Sightand_Leisure_Audio;
+    private string levelName;
 
     // Start is called before the first frame update
     void Start()
@@ -100,10 +112,14 @@ public class GameController : MonoBehaviour
         // 获取当前场景的名称
         sceneName = currentScene.name;
 
+        Loadkoreography();
+
         // 注册事件监听器
         Koreographer.Instance.RegisterForEvents(eventID, OnMusicEvent);
 
         playingKoreo = Koreographer.Instance.GetKoreographyAtIndex(0);
+
+        Debug.Log("eventID: " + eventID);
 
         KoreographyTrackBase rhythmTrack = playingKoreo.GetTrackByID(eventID);
         List<KoreographyEvent> rawEvents = rhythmTrack.GetAllEvents();
@@ -127,14 +143,17 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("noteMaxNumber: " + noteMaxNumber);
+        //Debug.Log("noteMaxNumber: " + noteMaxNumber);
         if (noteMaxNumber == 0)
         {
-            DelayedExecution(delay);
-            FadeIn();
+            StartCoroutine(DelayedExecution(delay));
+
             //Debug.Log("FadeIn");
 
-            dataSaveFlag = true;
+            //dataSaveFlag = true;
+
+            //SaveData();
+            //loadScene();
         }
 
         if(noteMaxNumber == 290 && dataSaveFlag == true)
@@ -143,11 +162,11 @@ public class GameController : MonoBehaviour
             dataSaveFlag= false;
         }
 
-        if(noteMaxNumber == 290)
-        {
-            SaveData();
-            loadScene();
-        }
+        //if(noteMaxNumber == 10)
+        //{
+        //    SaveData();
+        //    loadScene();
+        //}
     }
 
     private void OnDestroy()
@@ -184,6 +203,15 @@ public class GameController : MonoBehaviour
     {
         // 等待指定的延迟时间
         yield return new WaitForSeconds(delay);
+
+        FadeIn();
+
+        yield return new WaitForSeconds(3);
+
+        dataSaveFlag = true;
+
+        SaveData();
+        loadScene();
     }
 
     void FadeIn()
@@ -210,12 +238,12 @@ public class GameController : MonoBehaviour
 
         //DataStorage data = new DataStorage(sceneName, GameManger.finalScore, GameManger.maxHitChain, GameManger.miss);
 
-        string dataString = $"{sceneName}|{GameManger.finalScore}|{GameManger.maxHitChain}|{GameManger.miss}";
+        string dataString = $"{levelName}|{GameManger.finalScore}|{GameManger.maxHitChain}|{GameManger.miss}";
 
 
         Debug.Log(dataString);
 
-        PlayerPrefs.SetString(sceneName, dataString);
+        PlayerPrefs.SetString(levelName, dataString);
         PlayerPrefs.Save();
 
         //PlayerPrefs.SetString("levelName", sceneName);
@@ -225,5 +253,37 @@ public class GameController : MonoBehaviour
     void loadScene()
     {
         SceneManager.LoadScene("ResultScene");
+    }
+
+    void Loadkoreography()
+    {
+        //levelName = "Constant_Moderato";
+        //levelName = "A_Familiar_Sight_and_Leisure";
+        levelName = "Three-Tone_Composition";
+
+
+        if (levelName == "Constant_Moderato")
+        {
+            koreography = koreography1;
+            eventID = "ConstantModeratoTrack";
+            Constant_Moderato_Audio.SetActive(true);
+        }
+        else if(levelName == "A_Familiar_Sight_and_Leisure")
+        {
+            Debug.Log("A_Familiar_Sight_and_Leisure run");
+            koreography = koreography2;
+            eventID = "AFamiliarSightandLeisureTrack";
+            A_Familiar_Sightand_Leisure_Audio.SetActive(true);
+        }
+        else if( levelName == "Three-Tone_Composition")
+        {
+            koreography = koreography3;
+            eventID = "ThreeToneCompositionTrack";
+            Three_Tone_Composition_Audio.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("Error, koreography is load");
+        }
     }
 }

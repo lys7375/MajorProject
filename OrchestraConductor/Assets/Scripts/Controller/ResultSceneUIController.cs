@@ -17,7 +17,7 @@ public class ResultSceneUIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string data = PlayerPrefs.GetString("Constant_Moderato");
+        string data = PlayerPrefs.GetString("Three-Tone_Composition");
 
         //data = DataStorage.LoadDataFromPlayerPrefs(levelName);
 

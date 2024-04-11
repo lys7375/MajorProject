@@ -28,6 +28,9 @@ public class LevelselectionSceneUIController : MonoBehaviour
     void Start()
     {
         game0.onClick.AddListener(Game0ButtonOnClick);
+        game1.onClick.AddListener(Game1ButtonOnClick);
+        game2.onClick.AddListener(Game2ButtonOnClick);
+
         ShowGameInfo("Constant_Moderato", levelName1, score1, missHit1, maxChain1);
         ShowGameInfo("A_Familiar_Sight_and_Leisure", levelName2, score2, missHit2, maxChain2);
         ShowGameInfo("Three-Tone_Composition", levelName3 , score3, missHit3, maxChain3);
@@ -42,6 +45,16 @@ public class LevelselectionSceneUIController : MonoBehaviour
     void Game0ButtonOnClick()
     {
         SceneManager.LoadScene("Constant_Moderato");
+    }
+
+    void Game1ButtonOnClick()
+    {
+        SceneManager.LoadScene("A_Familiar_Sight_and_Leisure");
+    }
+
+    void Game2ButtonOnClick()
+    {
+        SceneManager.LoadScene("Three-Tone_Composition");
     }
 
     void ShowGameInfo(string key, TMP_Text levelName, TMP_Text score, TMP_Text missTxt, TMP_Text maxChain)
