@@ -69,16 +69,10 @@ public class GameController : MonoBehaviour
     public GameObject A_Familiar_Sightand_Leisure_Audio;
     private string levelName;
 
-
-    //public UDPCommunicator udp;
-
     // Start is called before the first frame update
     void Start()
     {
-        //udp.EnableStopGesturerecognition();
-
         spriteRenderer = curtain.GetComponent<SpriteRenderer>();
-        //spriteRenderer.enabled = false;
 
         // 定义Note初始生成X,z坐标
         // 左手检测区
@@ -154,18 +148,6 @@ public class GameController : MonoBehaviour
         {
             StartCoroutine(DelayedExecution(delay));
         }
-
-        //if(noteMaxNumber == 290 && dataSaveFlag == true)
-        //{
-        //    SaveData();
-        //    dataSaveFlag= false;
-        //}
-
-        //if(noteMaxNumber == 10)
-        //{
-        //    SaveData();
-        //    loadScene();
-        //}
     }
 
     private void OnDestroy()
@@ -210,8 +192,6 @@ public class GameController : MonoBehaviour
         dataSaveFlag = true;
 
         SaveData();
-
-        //udp.DisableGesturerecognition();
 
         loadScene();
     }

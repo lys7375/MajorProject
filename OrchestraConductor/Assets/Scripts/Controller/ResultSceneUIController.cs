@@ -14,6 +14,10 @@ public class ResultSceneUIController : MonoBehaviour
     public Button retry;
     public Button next;
 
+    public float fadeSpeed = 0.5f; // 渐变速度
+
+    private float currentAlpha = 0f; // 当前 alpha 值
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +30,7 @@ public class ResultSceneUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        FadeIn();
     }
 
     void DisplayData()
@@ -71,5 +75,21 @@ public class ResultSceneUIController : MonoBehaviour
     void Next()
     {
         SceneManager.LoadScene("LevelSelectionScene");
+    }
+
+    void FadeIn()
+    {
+        currentAlpha += fadeSpeed * Time.deltaTime;
+        currentAlpha = Mathf.Clamp01(currentAlpha);
+
+        musicName.color = new Color(musicName.color.r, musicName.color.g, musicName.color.b, currentAlpha);
+        hit.color = new Color(hit.color.r, hit.color.g, hit.color.b, currentAlpha);
+        chain.color = new Color(chain.color.r, chain.color.g, chain.color.b, currentAlpha);
+        missTxt.color = new Color(missTxt.color.r, missTxt.color.g, missTxt.color.b, currentAlpha);
+
+        if (currentAlpha >= 1f)
+        {
+            enabled = false;
+        }
     }
 }

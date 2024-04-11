@@ -12,6 +12,7 @@ public class MainMenuUIController : MonoBehaviour
     public Button playBtn;
     public Button exitBtn;
 
+    public TMP_Text title;
     public TMP_Text playText;
     public TMP_Text exitText;
     public float fadeSpeed = 0.5f; // 渐变速度
@@ -49,6 +50,7 @@ public class MainMenuUIController : MonoBehaviour
         currentAlpha += fadeSpeed * Time.deltaTime;
         currentAlpha = Mathf.Clamp01(currentAlpha);
 
+        title.color = new Color(playText.color.r, playText.color.g, playText.color.b, currentAlpha);
         playText.color = new Color(playText.color.r, playText.color.g, playText.color.b, currentAlpha);
         exitText.color = new Color(exitText.color.r, exitText.color.g, exitText.color.b, currentAlpha);
 
