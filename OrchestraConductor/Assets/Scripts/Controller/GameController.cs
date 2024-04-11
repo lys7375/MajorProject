@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Unity.Burst.CompilerServices;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -147,20 +148,13 @@ public class GameController : MonoBehaviour
         if (noteMaxNumber == 0)
         {
             StartCoroutine(DelayedExecution(delay));
-
-            //Debug.Log("FadeIn");
-
-            //dataSaveFlag = true;
-
-            //SaveData();
-            //loadScene();
         }
 
-        if(noteMaxNumber == 290 && dataSaveFlag == true)
-        {
-            SaveData();
-            dataSaveFlag= false;
-        }
+        //if(noteMaxNumber == 290 && dataSaveFlag == true)
+        //{
+        //    SaveData();
+        //    dataSaveFlag= false;
+        //}
 
         //if(noteMaxNumber == 10)
         //{
@@ -234,33 +228,73 @@ public class GameController : MonoBehaviour
 
     void SaveData()
     {
-        //gameManager.SaveData(sceneName, GameManger.finalScore, GameManger.maxHitChain, GameManger.miss);
-
-        //DataStorage data = new DataStorage(sceneName, GameManger.finalScore, GameManger.maxHitChain, GameManger.miss);
-
         string dataString = $"{levelName}|{GameManger.finalScore}|{GameManger.maxHitChain}|{GameManger.miss}";
 
-
-        Debug.Log(dataString);
+        //Debug.Log(dataString);
 
         PlayerPrefs.SetString(levelName, dataString);
         PlayerPrefs.Save();
 
-        //PlayerPrefs.SetString("levelName", sceneName);
-        //PlayerPrefs.Save();
+        if(levelName == "Constant_Moderato")
+        {
+            UpdateRecord("Constant_Moderato_Record", dataString);
+        }
+        else if(levelName == "A_Familiar_Sight_and_Leisure")
+        {
+            UpdateRecord("A_Familiar_Sight_and_Leisure_Record", dataString);
+        }
+        else
+        {
+            UpdateRecord("Three-Tone_Composition_Record", dataString);
+        }
+    }
+
+    // 更新游戏记录
+    void UpdateRecord(string key, string data)
+    {
+        Debug.Log("Update Record");
+
+        if (PlayerPrefs.HasKey(key))
+        {
+
+            string record = PlayerPrefs.GetString(key);
+            string[] dataPieces = record.Split('|');
+
+            if (dataPieces.Length == 4) // 确保数据拆分正确
+            {
+                string sceneName = dataPieces[0];
+                int finalScore = int.Parse(dataPieces[1]);
+                int maxHitChain = int.Parse(dataPieces[2]);
+                int miss = int.Parse(dataPieces[3]);
+
+                sceneName = sceneName.Replace("_", " ");
+
+                if (finalScore < GameManger.finalScore)
+                {
+                    PlayerPrefs.SetString(key, data);
+                    PlayerPrefs.Save();
+                }
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetString(key, data);
+            PlayerPrefs.Save();
+        }
     }
 
     void loadScene()
     {
+        string record = PlayerPrefs.GetString("Three-Tone_Composition_Record");
+        Debug.Log("record: " + record);
+
         SceneManager.LoadScene("ResultScene");
     }
 
+    // 初始化koreography
     void Loadkoreography()
     {
-        //levelName = "Constant_Moderato";
-        //levelName = "A_Familiar_Sight_and_Leisure";
         levelName = LevelselectionSceneUIController.levelName;
-
 
         if (levelName == "Constant_Moderato")
         {

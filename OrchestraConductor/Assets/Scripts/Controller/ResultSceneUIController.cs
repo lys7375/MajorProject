@@ -35,6 +35,7 @@ public class ResultSceneUIController : MonoBehaviour
 
         string[] dataPieces = data.Split('|');
 
+
         if (dataPieces.Length == 4)
         {
             string sceneName = dataPieces[0];
@@ -59,8 +60,11 @@ public class ResultSceneUIController : MonoBehaviour
     // 重玩
     void Retry()
     {
-        SceneManager.LoadScene("GameScene");
+        GameManger.finalScore = 0;
+        GameManger.maxHitChain = 0;
+        GameManger.miss = 0;
 
+        SceneManager.LoadScene("GameScene");
     }
 
     // 回到LevelSelectionScene

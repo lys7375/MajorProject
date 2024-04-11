@@ -34,9 +34,9 @@ public class LevelselectionSceneUIController : MonoBehaviour
         game2.onClick.AddListener(Game2ButtonOnClick);
         backBtn.onClick.AddListener(BackBtnOnClick);
 
-        ShowGameInfo("Constant_Moderato", levelName1, score1, missHit1, maxChain1);
-        ShowGameInfo("A_Familiar_Sight_and_Leisure", levelName2, score2, missHit2, maxChain2);
-        ShowGameInfo("Three-Tone_Composition", levelName3 , score3, missHit3, maxChain3);
+        ShowGameInfo("Constant_Moderato_Record", levelName1, score1, missHit1, maxChain1);
+        ShowGameInfo("A_Familiar_Sight_and_Leisure_Record", levelName2, score2, missHit2, maxChain2);
+        ShowGameInfo("Three-Tone_Composition_Record", levelName3 , score3, missHit3, maxChain3);
     }
 
     // Update is called once per frame
@@ -70,6 +70,7 @@ public class LevelselectionSceneUIController : MonoBehaviour
 
     void ShowGameInfo(string key, TMP_Text levelName, TMP_Text score, TMP_Text missTxt, TMP_Text maxChain)
     {
+        Debug.Log("ShowGameInfo");
         if (PlayerPrefs.HasKey(key))
         {
             string data = PlayerPrefs.GetString(key);
