@@ -15,14 +15,30 @@ public class UDPCommunicator : MonoBehaviour
 
     static public string leftHandDirection = "";
     static public string rightHandDirection = "";
-    static public bool gestureStopSignal = false;
+    static public bool gestureStopSignal = true;
     private int position = 0;
 
+    //private string signal;
 
     void Start()
     {
         client = new UdpClient(54321); // 监听的端口
         remoteEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8080); // Python监听的端口和地址
+
+        //if(gestureStopSignal == true )
+        //{
+        //    //signal = "Stop";
+
+        //    byte[] data = Encoding.UTF8.GetBytes("Stop");
+        //    client.Send(data, data.Length, remoteEndPoint);
+        //}
+        //else
+        //{
+        //    //signal = "Run";
+
+        //    byte[] data = Encoding.UTF8.GetBytes("Run");
+        //    client.Send(data, data.Length, remoteEndPoint);
+        //}
 
         // 启动一个协程来接收数据
         StartCoroutine(ReceiveData());
@@ -32,16 +48,16 @@ public class UDPCommunicator : MonoBehaviour
     {
         //发送数据
         // 按空格停止python进行手势识别
-        if (Input.GetKeyDown(KeyCode.Space) || gestureStopSignal == true)
-        {
-            string message = isTrue ? "Stop" : "Run";
-            byte[] data = Encoding.UTF8.GetBytes(message);
-            client.Send(data, data.Length, remoteEndPoint);
+        //if (Input.GetKeyDown(KeyCode.Space) || gestureStopSignal == true)
+        //{
+        //    string message = isTrue ? "Stop" : "Run";
+        //    byte[] data = Encoding.UTF8.GetBytes(message);
+        //    client.Send(data, data.Length, remoteEndPoint);
 
-            Debug.Log("Python: " + message);
-            
-            isTrue = !isTrue;
-        }
+        //    Debug.Log("Python: " + message);
+
+        //    isTrue = !isTrue;
+        //}
     }
 
     // 获取Python手势识别结果
@@ -86,5 +102,21 @@ public class UDPCommunicator : MonoBehaviour
     public string GetLastReceivedMessage()
     {
         return receivedText;
+    }
+
+    public void DisableGesturerecognition()
+    {
+        //gestureStopSignal = true;
+        //signal = "Stop";
+        byte[] data = Encoding.UTF8.GetBytes("Stop");
+        client.Send(data, data.Length, remoteEndPoint);
+    }
+
+    public void EnableStopGesturerecognition()
+    {
+        //gestureStopSignal = false;
+        //signal = "Run";
+        byte[] data = Encoding.UTF8.GetBytes("Run");
+        client.Send(data, data.Length, remoteEndPoint);
     }
 }

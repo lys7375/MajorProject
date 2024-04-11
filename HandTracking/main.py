@@ -115,6 +115,7 @@ detector = htm.handDetector()
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind(('localhost', 12345))
 flag = True
+# flag = False
 # 启动接收数据的线程
 recv_thread = Thread(target=receive_data, args=(sock,))
 recv_thread.start()

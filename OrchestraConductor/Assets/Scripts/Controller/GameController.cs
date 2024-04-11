@@ -69,9 +69,14 @@ public class GameController : MonoBehaviour
     public GameObject A_Familiar_Sightand_Leisure_Audio;
     private string levelName;
 
+
+    //public UDPCommunicator udp;
+
     // Start is called before the first frame update
     void Start()
     {
+        //udp.EnableStopGesturerecognition();
+
         spriteRenderer = curtain.GetComponent<SpriteRenderer>();
         //spriteRenderer.enabled = false;
 
@@ -205,6 +210,9 @@ public class GameController : MonoBehaviour
         dataSaveFlag = true;
 
         SaveData();
+
+        //udp.DisableGesturerecognition();
+
         loadScene();
     }
 
