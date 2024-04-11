@@ -5,18 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3a6db5f-3b37-42c8-b5f0-bc7074da2e0c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/HandTracking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HandTracking.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HandTrackingModule.py" beforeDir="false" afterPath="$PROJECT_DIR$/HandTrackingModule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Koreography/ConstantModeratoTrack.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Koreography/ConstantModeratoTrack.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scenes/SampleScene.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scenes/SampleScene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scenes/Constant_Moderato.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scenes/Constant_Moderato.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scenes/LevelSelectionScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scenes/LevelSelectionScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scenes/ResultScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scenes/ResultScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Controller/GameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Controller/GameController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Controller/LevelselectionSceneUIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Controller/LevelselectionSceneUIController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Controller/NoteController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Controller/NoteController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Manager/GameManger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Manager/GameManger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Controller/ResultSceneUIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Controller/ResultSceneUIController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../OrchestraConductor/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -95,6 +90,7 @@
       <workItem from="1712502435035" duration="732000" />
       <workItem from="1712681529082" duration="1034000" />
       <workItem from="1712748258477" duration="41000" />
+      <workItem from="1712790131141" duration="670000" />
     </task>
     <servers />
   </component>

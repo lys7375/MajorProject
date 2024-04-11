@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class LevelselectionSceneUIController : MonoBehaviour
 {
+    public static string levelName;
     public Button game0;
     public Button game1;
     public Button game2;
@@ -23,6 +24,7 @@ public class LevelselectionSceneUIController : MonoBehaviour
     public TMP_Text maxChain1;
     public TMP_Text maxChain2;
     public TMP_Text maxChain3;
+    public Button backBtn;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,7 @@ public class LevelselectionSceneUIController : MonoBehaviour
         game0.onClick.AddListener(Game0ButtonOnClick);
         game1.onClick.AddListener(Game1ButtonOnClick);
         game2.onClick.AddListener(Game2ButtonOnClick);
+        backBtn.onClick.AddListener(BackBtnOnClick);
 
         ShowGameInfo("Constant_Moderato", levelName1, score1, missHit1, maxChain1);
         ShowGameInfo("A_Familiar_Sight_and_Leisure", levelName2, score2, missHit2, maxChain2);
@@ -44,17 +47,25 @@ public class LevelselectionSceneUIController : MonoBehaviour
 
     void Game0ButtonOnClick()
     {
-        SceneManager.LoadScene("Constant_Moderato");
+        SceneManager.LoadScene("GameScene");
+        levelName = "Constant_Moderato";
     }
 
     void Game1ButtonOnClick()
     {
-        SceneManager.LoadScene("A_Familiar_Sight_and_Leisure");
+        SceneManager.LoadScene("GameScene");
+        levelName = "A_Familiar_Sight_and_Leisure";
     }
 
     void Game2ButtonOnClick()
     {
-        SceneManager.LoadScene("Three-Tone_Composition");
+        SceneManager.LoadScene("GameScene");
+        levelName = "Three-Tone_Composition";
+    }
+
+    void BackBtnOnClick()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     void ShowGameInfo(string key, TMP_Text levelName, TMP_Text score, TMP_Text missTxt, TMP_Text maxChain)

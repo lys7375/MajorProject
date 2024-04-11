@@ -259,7 +259,7 @@ public class GameController : MonoBehaviour
     {
         //levelName = "Constant_Moderato";
         //levelName = "A_Familiar_Sight_and_Leisure";
-        levelName = "Three-Tone_Composition";
+        levelName = LevelselectionSceneUIController.levelName;
 
 
         if (levelName == "Constant_Moderato")
@@ -280,6 +280,8 @@ public class GameController : MonoBehaviour
             koreography = koreography3;
             eventID = "ThreeToneCompositionTrack";
             Three_Tone_Composition_Audio.SetActive(true);
+            AudioSource audioSource = Three_Tone_Composition_Audio.GetComponent<AudioSource>();
+            audioSource.volume = 0.1f;
         }
         else
         {
