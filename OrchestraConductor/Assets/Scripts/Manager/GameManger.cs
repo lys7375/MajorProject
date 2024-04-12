@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -96,11 +97,13 @@ public class GameManger : MonoBehaviour
     }
 
     // 本地数据读取
-    public DataStorage LoadData(string levelName)
+    public string[] LoadData()
     {
-        DataStorage data = DataStorage.LoadDataFromPlayerPrefs(levelName);
+        string key = PlayerPrefs.GetString("levelName");
+        string data = PlayerPrefs.GetString(key);
+        string[] dataPieces = data.Split('|');
 
-        return data;
+        return dataPieces;
     }
 
     public void Show(string txt)

@@ -120,7 +120,7 @@ public class NoteController : MonoBehaviour
         {
             GameController.noteMaxNumber--;
             GameManger.chain++;
-            GameManger.finalScore = GameManger.finalScore + GameManger.maxHitChain;
+            GameManger.finalScore = GameManger.finalScore + GameManger.chain;
 
             if (GameManger.maxHitChain < GameManger.chain)
             {

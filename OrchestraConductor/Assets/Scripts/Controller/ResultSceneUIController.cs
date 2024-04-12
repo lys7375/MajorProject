@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class ResultSceneUIController : MonoBehaviour
 {
+    public GameObject gameManger;
     public TMP_Text musicName;
     public TMP_Text hit;
     public TMP_Text chain;
@@ -35,12 +36,7 @@ public class ResultSceneUIController : MonoBehaviour
 
     void DisplayData()
     {
-        string key = PlayerPrefs.GetString("levelName");
-
-        string data = PlayerPrefs.GetString(key);
-
-        string[] dataPieces = data.Split('|');
-
+        string[] dataPieces = gameManger.GetComponent<GameManger>().LoadData();
 
         if (dataPieces.Length == 4)
         {
@@ -55,13 +51,38 @@ public class ResultSceneUIController : MonoBehaviour
             hit.text = "Score: " + finalScore;
             chain.text = "Max Chain: " + maxHitChain;
             missTxt.text = "Miss: " + miss;
-
-            //Debug.Log("Scene Name: " + sceneName);
-            //Debug.Log("Final Score: " + finalScore);
-            //Debug.Log("Max Hit Chain: " + maxHitChain);
-            //Debug.Log("Miss: " + miss);
         }
     }
+
+    //void DisplayData()
+    //{
+    //    string key = PlayerPrefs.GetString("levelName");
+
+    //    string data = PlayerPrefs.GetString(key);
+
+    //    string[] dataPieces = data.Split('|');
+
+
+    //    if (dataPieces.Length == 4)
+    //    {
+    //        string sceneName = dataPieces[0];
+    //        string finalScore = dataPieces[1];
+    //        string maxHitChain = dataPieces[2];
+    //        string miss = dataPieces[3];
+
+    //        sceneName = sceneName.Replace("_", " ");
+
+    //        musicName.text = sceneName;
+    //        hit.text = "Score: " + finalScore;
+    //        chain.text = "Max Chain: " + maxHitChain;
+    //        missTxt.text = "Miss: " + miss;
+
+    //        //Debug.Log("Scene Name: " + sceneName);
+    //        //Debug.Log("Final Score: " + finalScore);
+    //        //Debug.Log("Max Hit Chain: " + maxHitChain);
+    //        //Debug.Log("Miss: " + miss);
+    //    }
+    //}
 
     // 重玩
     void Retry()
