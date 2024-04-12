@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
     // 当前 alpha 值
     private float currentAlpha = 0f;
 
-    public GameManger gameManager;
+    //public GameManger gameManager;
 
     // 定义 Note 的预制体
     public GameObject notePrefab;
@@ -37,16 +37,14 @@ public class GameController : MonoBehaviour
     //private float fallTime = 0;
 
     // 用于监听的事件ID，确保这与你在Koreographer中设置的事件ID匹配
-    public string eventID;
-    //public Koreography koreography;
+    private string eventID;
     private Koreography koreography;
     Koreography playingKoreo;
 
     public Koreography koreography1;
     public Koreography koreography2;
     public Koreography koreography3;
-
-
+    public Koreography koreography4;
 
     // Note生成坐标字典
     private Dictionary<string, Vector3> notePosition = new Dictionary<string, Vector3>();
@@ -66,6 +64,7 @@ public class GameController : MonoBehaviour
 
     public GameObject Constant_Moderato_Audio;
     public GameObject Three_Tone_Composition_Audio;
+    public GameObject Three_Tone_Composition_Hard_Audio;
     public GameObject A_Familiar_Sightand_Leisure_Audio;
     private string levelName;
 
@@ -113,6 +112,8 @@ public class GameController : MonoBehaviour
         sceneName = currentScene.name;
 
         Loadkoreography();
+
+        Debug.Log("eventID: " + eventID);
 
         // 注册事件监听器
         Koreographer.Instance.RegisterForEvents(eventID, OnMusicEvent);
@@ -220,6 +221,9 @@ public class GameController : MonoBehaviour
 
         //Debug.Log(dataString);
 
+        PlayerPrefs.SetString("levelName", levelName);
+        PlayerPrefs.Save();
+
         PlayerPrefs.SetString(levelName, dataString);
         PlayerPrefs.Save();
 
@@ -231,10 +235,18 @@ public class GameController : MonoBehaviour
         {
             UpdateRecord("A_Familiar_Sight_and_Leisure_Record", dataString);
         }
-        else
+        else if(levelName == "Three-Tone_Composition")
         {
             UpdateRecord("Three-Tone_Composition_Record", dataString);
         }
+        else
+        {
+            UpdateRecord("Three-Tone_Composition_Hard_Record", dataString);
+        }
+
+        GameManger.finalScore = 0;
+        GameManger.maxHitChain = 0;
+        GameManger.miss = 0;
     }
 
     // 更新游戏记录
@@ -273,8 +285,8 @@ public class GameController : MonoBehaviour
 
     void loadScene()
     {
-        string record = PlayerPrefs.GetString("Three-Tone_Composition_Record");
-        Debug.Log("record: " + record);
+        //string record = PlayerPrefs.GetString("Three-Tone_Composition_Record");
+        //Debug.Log("record: " + record);
 
         SceneManager.LoadScene("ResultScene");
     }
@@ -283,6 +295,9 @@ public class GameController : MonoBehaviour
     void Loadkoreography()
     {
         levelName = LevelselectionSceneUIController.levelName;
+        //levelName = "Three-Tone_Composition_Hard";
+        //levelName = "Three-Tone_Composition";
+        //levelName = "Constant_Moderatod";
 
         if (levelName == "Constant_Moderato")
         {
@@ -297,12 +312,21 @@ public class GameController : MonoBehaviour
             eventID = "AFamiliarSightandLeisureTrack";
             A_Familiar_Sightand_Leisure_Audio.SetActive(true);
         }
-        else if( levelName == "Three-Tone_Composition")
+        else if(levelName == "Three-Tone_Composition")
         {
             koreography = koreography3;
             eventID = "ThreeToneCompositionTrack";
+            //eventID = "ConstantModeratoTrack";
             Three_Tone_Composition_Audio.SetActive(true);
             AudioSource audioSource = Three_Tone_Composition_Audio.GetComponent<AudioSource>();
+            audioSource.volume = 0.1f;
+        }
+        else if (levelName == "Three-Tone_Composition_Hard")
+        {
+            koreography = koreography4;
+            eventID = "ThreeToneCompositionHardTrack";
+            Three_Tone_Composition_Hard_Audio.SetActive(true);
+            AudioSource audioSource = Three_Tone_Composition_Hard_Audio.GetComponent<AudioSource>();
             audioSource.volume = 0.1f;
         }
         else

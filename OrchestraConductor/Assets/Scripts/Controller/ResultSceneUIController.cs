@@ -35,7 +35,9 @@ public class ResultSceneUIController : MonoBehaviour
 
     void DisplayData()
     {
-        string data = PlayerPrefs.GetString("Three-Tone_Composition");
+        string key = PlayerPrefs.GetString("levelName");
+
+        string data = PlayerPrefs.GetString(key);
 
         string[] dataPieces = data.Split('|');
 
