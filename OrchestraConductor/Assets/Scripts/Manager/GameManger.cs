@@ -106,6 +106,14 @@ public class GameManger : MonoBehaviour
         return dataPieces;
     }
 
+    public string[] LoadDataWithKey(string key)
+    {
+        string data = PlayerPrefs.GetString(key);
+        string[] dataPieces = data.Split('|');
+
+        return dataPieces;
+    }
+
     public void Show(string txt)
     {
         Debug.Log(txt);

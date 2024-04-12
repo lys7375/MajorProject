@@ -1496,6 +1496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5a501be25fa5a47805410367be4024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManger: {fileID: 550146341}
   musicName: {fileID: 1744043711}
   hit: {fileID: 574391085}
   chain: {fileID: 1133818881}

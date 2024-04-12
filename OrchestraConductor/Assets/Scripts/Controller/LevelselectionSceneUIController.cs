@@ -10,6 +10,8 @@ public class LevelselectionSceneUIController : MonoBehaviour
 {
     //public static string levelName;
 
+    public GameObject gameManger;
+
     public GameObject gObj1;
     public GameObject gObj2;
     public GameObject gObj3;
@@ -65,25 +67,20 @@ public class LevelselectionSceneUIController : MonoBehaviour
         TMP_Text missTxt = parentTransform.GetChild(2).gameObject.GetComponent<TMP_Text>();
         TMP_Text maxChain = parentTransform.GetChild(3).gameObject.GetComponent<TMP_Text>();
 
-        //Debug.Log("ShowGameInfo");
-        if (PlayerPrefs.HasKey(key))
+        string[] dataPieces = gameManger.GetComponent<GameManger>().LoadDataWithKey(key);
+
+        if (dataPieces.Length == 4)
         {
-            string data = PlayerPrefs.GetString(key);
-            string[] dataPieces = data.Split('|');
+            string sceneName = dataPieces[0];
+            sceneName = sceneName.Replace("_", " ");
+            int finalScore = int.Parse(dataPieces[1]);
+            int maxHitChain = int.Parse(dataPieces[2]);
+            int miss = int.Parse(dataPieces[3]);
 
-            if (dataPieces.Length == 4)
-            {
-                string sceneName = dataPieces[0];
-                sceneName = sceneName.Replace("_", " ");
-                int finalScore = int.Parse(dataPieces[1]);
-                int maxHitChain = int.Parse(dataPieces[2]);
-                int miss = int.Parse(dataPieces[3]);
-
-                levelTxt.text = sceneName;
-                score.text = "Score: " + finalScore.ToString();
-                missTxt.text = "Max Chain: " + maxHitChain.ToString();
-                maxChain.text = "Miss: " + miss.ToString();
-            }
+            levelTxt.text = sceneName;
+            score.text = "Score: " + finalScore.ToString();
+            missTxt.text = "Max Chain: " + maxHitChain.ToString();
+            maxChain.text = "Miss: " + miss.ToString();
         }
         else
         {
