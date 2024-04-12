@@ -68,7 +68,8 @@ public class NoteController : MonoBehaviour
         if (transform.position.y <= -4.51f)
         {
             //Debug.Log(gameObject.name + " has destroy");
-            GameManger.maxHitChain = 0;
+            //GameManger.maxHitChain = 0;
+            GameManger.chain = 0;
             //Debug.Log("Unhit!!!");
         }
 
@@ -100,24 +101,12 @@ public class NoteController : MonoBehaviour
             if (noteType[this.transform.name] == UDPCommunicator.leftHandDirection || noteType[this.transform.name] == UDPCommunicator.rightHandDirection)
                 fadeOutFlag = true;
         }
-
-        //if(gestureCheckFlag == true)
-        //{
-        //    // 位于检测区间
-        //    if (transform.position.y < -2.5f && transform.position.y > -4.5f)
-        //    {
-        //        //Debug.Log("位于检测区间: " + transform.name);
-        //        fadeOutFlag = true;
-        //    }
-        //}
     }
 
     // Note变淡消失
     private void FadeOut()
     {
         fadeTimer += Time.deltaTime;
-
-        //Debug.Log("fadeTimer: " + fadeTimer + " | fadeDuration: " + fadeDuration);
 
         if (fadeTimer < fadeDuration)
         {
@@ -130,12 +119,14 @@ public class NoteController : MonoBehaviour
         else
         {
             GameController.noteMaxNumber--;
-            //Debug.Log("hit num: " + GameController.num);
+            GameManger.chain++;
+            GameManger.finalScore = GameManger.finalScore + GameManger.maxHitChain;
 
-            GameManger.finalScore++;
-            GameManger.maxHitChain++;
+            if (GameManger.maxHitChain < GameManger.chain)
+            {
+                GameManger.maxHitChain = GameManger.chain;
+            }
 
-            //Debug.Log("GameManger.finalScore: " + GameManger.finalScore);
             Destroy(gameObject);
         }
     }

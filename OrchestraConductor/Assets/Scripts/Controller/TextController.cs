@@ -21,7 +21,7 @@ public class TextController : MonoBehaviour
     void Update()
     {
         uiText.text = "Score: " + GameManger.finalScore;
-        hitChian.text = "HitChain: " + GameManger.maxHitChain;
+        hitChian.text = "HitChain: " + GameManger.chain;
         missHit.text = "Miss Hit: " + GameManger.miss;
     }
 }

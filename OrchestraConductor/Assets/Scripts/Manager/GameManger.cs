@@ -9,6 +9,7 @@ public class GameManger : MonoBehaviour
 {
     static public int finalScore = 0;
     static public int maxHitChain = 0;
+    static public int chain = 0;
     static public int miss = 0;
     static public string levelName;
 
@@ -57,6 +58,7 @@ public class GameManger : MonoBehaviour
         GameManger.finalScore = 0;
         GameManger.maxHitChain = 0;
         GameManger.miss = 0;
+        GameManger.chain = 0;
     }
 
     // 更新游戏记录

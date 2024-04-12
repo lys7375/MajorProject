@@ -85,8 +85,6 @@ public class UDPCommunicator : MonoBehaviour
                         leftHandDirection = "Null";
                         rightHandDirection = "Null";
                     }
-
-                    //Debug.Log("Receive left: " + leftHandDirection + " |  right: " + rightHandDirection);
                 }
             }
             yield return null;
@@ -106,16 +104,12 @@ public class UDPCommunicator : MonoBehaviour
 
     public void DisableGesturerecognition()
     {
-        //gestureStopSignal = true;
-        //signal = "Stop";
         byte[] data = Encoding.UTF8.GetBytes("Stop");
         client.Send(data, data.Length, remoteEndPoint);
     }
 
     public void EnableStopGesturerecognition()
     {
-        //gestureStopSignal = false;
-        //signal = "Run";
         byte[] data = Encoding.UTF8.GetBytes("Run");
         client.Send(data, data.Length, remoteEndPoint);
     }
