@@ -33,11 +33,11 @@ public class GameManger : MonoBehaviour
 
         //Debug.Log(dataString);
 
-        PlayerPrefs.SetString("levelName", levelName);
-        PlayerPrefs.Save();
+        //PlayerPrefs.SetString("levelName", levelName);
+        //PlayerPrefs.Save();
 
-        PlayerPrefs.SetString(levelName, dataString);
-        PlayerPrefs.Save();
+        //PlayerPrefs.SetString(levelName, dataString);
+        //PlayerPrefs.Save();
 
         if (levelName == "Constant_Moderato")
         {
@@ -56,10 +56,10 @@ public class GameManger : MonoBehaviour
             UpdateRecord("Three-Tone_Composition_Hard_Record", dataString);
         }
 
-        GameManger.finalScore = 0;
-        GameManger.maxHitChain = 0;
-        GameManger.miss = 0;
-        GameManger.chain = 0;
+        //GameManger.finalScore = 0;
+        //GameManger.maxHitChain = 0;
+        //GameManger.miss = 0;
+        //GameManger.chain = 0;
     }
 
     // 更新游戏记录
@@ -97,14 +97,14 @@ public class GameManger : MonoBehaviour
     }
 
     // 本地数据读取
-    public string[] LoadData()
-    {
-        string key = PlayerPrefs.GetString("levelName");
-        string data = PlayerPrefs.GetString(key);
-        string[] dataPieces = data.Split('|');
+    //public string[] LoadData()
+    //{
+    //    string key = PlayerPrefs.GetString("levelName");
+    //    string data = PlayerPrefs.GetString(key);
+    //    string[] dataPieces = data.Split('|');
 
-        return dataPieces;
-    }
+    //    return dataPieces;
+    //}
 
     public string[] LoadDataWithKey(string key)
     {

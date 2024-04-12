@@ -36,22 +36,32 @@ public class ResultSceneUIController : MonoBehaviour
 
     void DisplayData()
     {
-        string[] dataPieces = gameManger.GetComponent<GameManger>().LoadData();
+        //string[] dataPieces = gameManger.GetComponent<GameManger>().LoadData();
 
-        if (dataPieces.Length == 4)
-        {
-            string sceneName = dataPieces[0];
-            string finalScore = dataPieces[1];
-            string maxHitChain = dataPieces[2];
-            string miss = dataPieces[3];
+        //if (dataPieces.Length == 4)
+        //{
+        //    string sceneName = dataPieces[0];
+        //    string finalScore = dataPieces[1];
+        //    string maxHitChain = dataPieces[2];
+        //    string miss = dataPieces[3];
 
-            sceneName = sceneName.Replace("_", " ");
+        //    sceneName = sceneName.Replace("_", " ");
 
-            musicName.text = sceneName;
-            hit.text = "Score: " + finalScore;
-            chain.text = "Max Chain: " + maxHitChain;
-            missTxt.text = "Miss: " + miss;
-        }
+        //    musicName.text = sceneName;
+        //    hit.text = "Score: " + finalScore;
+        //    chain.text = "Max Chain: " + maxHitChain;
+        //    missTxt.text = "Miss: " + miss;
+        //}
+
+        musicName.text = GameManger.levelName.Replace("_", " ");
+        hit.text = "Score: " + GameManger.finalScore.ToString();
+        chain.text = "Max Chain: " + GameManger.maxHitChain.ToString();
+        missTxt.text = "Miss: " + GameManger.miss.ToString();
+
+        GameManger.finalScore = 0;
+        GameManger.maxHitChain = 0;
+        GameManger.miss = 0;
+        GameManger.chain = 0;
     }
 
     //void DisplayData()
@@ -90,6 +100,7 @@ public class ResultSceneUIController : MonoBehaviour
         GameManger.finalScore = 0;
         GameManger.maxHitChain = 0;
         GameManger.miss = 0;
+        GameManger.chain = 0;
 
         SceneManager.LoadScene("GameScene");
     }
