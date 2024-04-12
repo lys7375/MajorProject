@@ -10,7 +10,7 @@ public class UDPCommunicator : MonoBehaviour
 {
     UdpClient client;
     IPEndPoint remoteEndPoint;
-    bool isTrue = true;
+    //bool isTrue = true;
     private string receivedText = "";
 
     static public string leftHandDirection = "";

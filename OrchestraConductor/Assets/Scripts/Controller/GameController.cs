@@ -60,13 +60,15 @@ public class GameController : MonoBehaviour
 
     private string sceneName;
 
-    private bool dataSaveFlag = true;
+    //private bool dataSaveFlag = true;
 
     public GameObject Constant_Moderato_Audio;
     public GameObject Three_Tone_Composition_Audio;
     public GameObject Three_Tone_Composition_Hard_Audio;
     public GameObject A_Familiar_Sightand_Leisure_Audio;
     private string levelName;
+
+    public GameObject gObj;
 
     // Start is called before the first frame update
     void Start()
@@ -113,14 +115,14 @@ public class GameController : MonoBehaviour
 
         Loadkoreography();
 
-        Debug.Log("eventID: " + eventID);
+        //Debug.Log("eventID: " + eventID);
 
         // 注册事件监听器
         Koreographer.Instance.RegisterForEvents(eventID, OnMusicEvent);
 
         playingKoreo = Koreographer.Instance.GetKoreographyAtIndex(0);
 
-        Debug.Log("eventID: " + eventID);
+        //Debug.Log("eventID: " + eventID);
 
         KoreographyTrackBase rhythmTrack = playingKoreo.GetTrackByID(eventID);
         List<KoreographyEvent> rawEvents = rhythmTrack.GetAllEvents();
@@ -190,7 +192,7 @@ public class GameController : MonoBehaviour
 
         yield return new WaitForSeconds(3);
 
-        dataSaveFlag = true;
+        //dataSaveFlag = true;
 
         SaveData();
 
@@ -217,70 +219,7 @@ public class GameController : MonoBehaviour
 
     void SaveData()
     {
-        string dataString = $"{levelName}|{GameManger.finalScore}|{GameManger.maxHitChain}|{GameManger.miss}";
-
-        //Debug.Log(dataString);
-
-        PlayerPrefs.SetString("levelName", levelName);
-        PlayerPrefs.Save();
-
-        PlayerPrefs.SetString(levelName, dataString);
-        PlayerPrefs.Save();
-
-        if(levelName == "Constant_Moderato")
-        {
-            UpdateRecord("Constant_Moderato_Record", dataString);
-        }
-        else if(levelName == "A_Familiar_Sight_and_Leisure")
-        {
-            UpdateRecord("A_Familiar_Sight_and_Leisure_Record", dataString);
-        }
-        else if(levelName == "Three-Tone_Composition")
-        {
-            UpdateRecord("Three-Tone_Composition_Record", dataString);
-        }
-        else
-        {
-            UpdateRecord("Three-Tone_Composition_Hard_Record", dataString);
-        }
-
-        GameManger.finalScore = 0;
-        GameManger.maxHitChain = 0;
-        GameManger.miss = 0;
-    }
-
-    // 更新游戏记录
-    void UpdateRecord(string key, string data)
-    {
-        Debug.Log("Update Record");
-
-        if (PlayerPrefs.HasKey(key))
-        {
-
-            string record = PlayerPrefs.GetString(key);
-            string[] dataPieces = record.Split('|');
-
-            if (dataPieces.Length == 4) // 确保数据拆分正确
-            {
-                string sceneName = dataPieces[0];
-                int finalScore = int.Parse(dataPieces[1]);
-                int maxHitChain = int.Parse(dataPieces[2]);
-                int miss = int.Parse(dataPieces[3]);
-
-                sceneName = sceneName.Replace("_", " ");
-
-                if (finalScore < GameManger.finalScore)
-                {
-                    PlayerPrefs.SetString(key, data);
-                    PlayerPrefs.Save();
-                }
-            }
-        }
-        else
-        {
-            PlayerPrefs.SetString(key, data);
-            PlayerPrefs.Save();
-        }
+        gObj.GetComponent<GameManger>().SaveData(levelName);
     }
 
     void loadScene()
@@ -294,7 +233,7 @@ public class GameController : MonoBehaviour
     // 初始化koreography
     void Loadkoreography()
     {
-        levelName = LevelselectionSceneUIController.levelName;
+        levelName = GameManger.levelName;
         //levelName = "Three-Tone_Composition_Hard";
         //levelName = "Three-Tone_Composition";
         //levelName = "Constant_Moderatod";

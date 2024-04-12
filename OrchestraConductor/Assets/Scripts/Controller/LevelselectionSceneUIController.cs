@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class LevelselectionSceneUIController : MonoBehaviour
 {
-    public static string levelName;
+    //public static string levelName;
 
     public GameObject gObj1;
     public GameObject gObj2;
@@ -46,7 +46,7 @@ public class LevelselectionSceneUIController : MonoBehaviour
     void ButtonClick(string str)
     {
         Debug.Log(str);
-        levelName = str;
+        GameManger.levelName = str;
         SceneManager.LoadScene("GameScene");
     }
 
