@@ -68,17 +68,15 @@ class handDetector():
                 direction = ""
                 hand_label = hand_handedness.classification[0].label
 
-                # 获取食指第二个关节（index_finger_mcp）和第三个关节（index_finger_pip）的坐标
+                # Retrieve the coordinates of the second joint (index_finger_mcp) and the third joint (index_finger_pip) of the index finger.
                 x1 = hand_landmarks.landmark[self.mpHands.HandLandmark.INDEX_FINGER_MCP].x
                 y1 = hand_landmarks.landmark[self.mpHands.HandLandmark.INDEX_FINGER_MCP].y
                 x2 = hand_landmarks.landmark[self.mpHands.HandLandmark.INDEX_FINGER_PIP].x
                 y2 = hand_landmarks.landmark[self.mpHands.HandLandmark.INDEX_FINGER_PIP].y
 
-                # 计算食指的斜率和角度（以度为单位）
+
                 slope = (y2 - y1) / (x2 - x1)
                 angle = math.atan(slope) * 180 / math.pi
-
-                # 根据手的标签确定处理方向的逻辑
                 if hand_label == 'Left':
                     if (angle > 45 or angle < -45) and y1 > y2:
                         right_direction = "Rup"

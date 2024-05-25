@@ -6,11 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="f3a6db5f-3b37-42c8-b5f0-bc7074da2e0c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HandTrackingModule.py" beforeDir="false" afterPath="$PROJECT_DIR$/HandTrackingModule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Koreography/AFamiliarSightandLeisureTrack.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Koreography/AFamiliarSightandLeisureTrack.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Koreography/ConstantModeratoTrack.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Koreography/ConstantModeratoTrack.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Koreography/ThreeToneCompositionHardTrack.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Koreography/ThreeToneCompositionHardTrack.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Koreography/ThreeToneCompositionTrack.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Koreography/ThreeToneCompositionTrack.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Controller/ResultSceneUIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Controller/ResultSceneUIController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Manager/GameManger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Manager/GameManger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Controller/GameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Controller/GameController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Controller/LevelselectionSceneUIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Controller/LevelselectionSceneUIController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Systems/UDPCommunicator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../OrchestraConductor/Assets/Scripts/Systems/UDPCommunicator.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,12 +45,13 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;python-unity-communication&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/yushu/OneDrive/Desktop/New folder (4)&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -94,6 +100,20 @@
       <workItem from="1712914068491" duration="1000" />
       <workItem from="1712914446826" duration="1918000" />
       <workItem from="1712931718766" duration="62000" />
+      <workItem from="1712933177466" duration="3520000" />
+      <workItem from="1712974627529" duration="609000" />
+      <workItem from="1712992099389" duration="6818000" />
+      <workItem from="1713000931827" duration="693000" />
+      <workItem from="1713011302744" duration="3260000" />
+      <workItem from="1713071860413" duration="4127000" />
+      <workItem from="1713164697098" duration="2752000" />
+      <workItem from="1713400260172" duration="672000" />
+      <workItem from="1713431263765" duration="1208000" />
+      <workItem from="1713434187859" duration="613000" />
+      <workItem from="1713455059433" duration="3225000" />
+      <workItem from="1713477716549" duration="303000" />
+      <workItem from="1713478390371" duration="2364000" />
+      <workItem from="1713482095708" duration="13000" />
     </task>
     <servers />
   </component>
@@ -101,6 +121,6 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/HandTracking$main.coverage" NAME="main Coverage Results" MODIFIED="1712931727013" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HandTracking$main.coverage" NAME="main Coverage Results" MODIFIED="1713482098079" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

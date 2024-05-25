@@ -129,6 +129,8 @@ public class GameController : MonoBehaviour
 
         noteMaxNumber = rawEvents.Count;
 
+        Debug.Log("noteMaxNumber: " + noteMaxNumber);
+
         for (int i = 0; i < rawEvents.Count; ++i)
         {
             KoreographyEvent evt = rawEvents[i];

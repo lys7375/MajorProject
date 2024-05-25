@@ -69,9 +69,9 @@ public class UDPCommunicator : MonoBehaviour
             {
                 byte[] receivedData = client.Receive(ref remoteEndPoint);
                 string receivedText = Encoding.UTF8.GetString(receivedData);
-                //Debug.Log("Received: " + receivedText);
+                Debug.Log("Received: " + receivedText + " | " + System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffffff"));
 
-                if(!string.IsNullOrEmpty(receivedText))
+                if (!string.IsNullOrEmpty(receivedText))
                 {
                     position = receivedText.IndexOf('|');
 

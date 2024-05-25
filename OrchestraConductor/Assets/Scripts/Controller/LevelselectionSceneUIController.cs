@@ -99,7 +99,7 @@ public class LevelselectionSceneUIController : MonoBehaviour
 
             if (dataPieces.Length == 4)
             {
-                if (int.Parse(dataPieces[1]) >= 17)
+                if (int.Parse(dataPieces[1]) >= 100)
                 {
                     gObj2.SetActive(true);
                 }
@@ -124,9 +124,13 @@ public class LevelselectionSceneUIController : MonoBehaviour
 
             if (dataPieces.Length == 4)
             {
-                if (int.Parse(dataPieces[1]) >= 17)
+                if (int.Parse(dataPieces[1]) >= 100)
                 {
                     gObj3.SetActive(true);
+                }
+                else
+                {
+                    gObj3.SetActive(false);
                 }
             }
         }
